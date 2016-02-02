@@ -12,8 +12,18 @@ module Knapsack
         JSON.pretty_generate(Knapsack.tracker.test_files_with_time)
       end
 
+      def leftover_report_json
+        leftover_tests = Knapsack::Allocator.leftover_node_tests
+        leftover_test_files_with_time = Knapsack.tracker.test_files_with_time.keep_if{ |k,_| leftover_tests.include? k }
+        JSON.pretty_generate(leftover_test_files_with_time)
+      end
+
       def report_details
         "Knapsack report was generated. Preview:\n" + Presenter.report_json
+      end
+
+      def leftover_report_details
+        "Leftover tests report\n" + Presenter.leftover_report_json
       end
 
       def global_time

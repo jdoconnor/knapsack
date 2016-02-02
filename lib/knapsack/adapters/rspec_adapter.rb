@@ -32,6 +32,7 @@ module Knapsack
           config.after(:suite) do
             Knapsack.report.save
             Knapsack.logger.info(Presenter.report_details)
+            Knapsack.logger.info(Presenter.leftover_report_details)
           end
         end
       end
